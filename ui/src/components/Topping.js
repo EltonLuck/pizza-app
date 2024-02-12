@@ -14,7 +14,7 @@ export const Topping = ({ topping, fetchToppings }) => {
 
   const handleDeleteTopping = async () => {
     try {
-        await axios.delete(`${API_URL}/${topping.id}`);
+      await axios.delete(`${API_URL}/${topping.id}`);
 
       await fetchToppings();
     } catch (err) {
