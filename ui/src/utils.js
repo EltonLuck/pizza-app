@@ -1,0 +1,1 @@
+export const API_URL = "https://7ga3xmjk4u52hshad5n3gvpeya0iyial.lambda-url.us-east-2.on.aws/topping";
