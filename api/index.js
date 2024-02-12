@@ -2,9 +2,9 @@ import express from "express";
 import serverless from "serverless-http";
 import cors from "cors";
 
-import { fetchToppings, createToppings, updateToppings, deleteToppings } from "./topping.js";
-import { fetchPizzas, createPizzas, updatePizzas, deletePizzas } from "./pizza.js";
-import { fetchPizzaToppings, createPizzaToppings, updatePizzaToppings, deletePizzaToppings } from "./pizzaTopping.js";
+import { fetchToppings, createToppings, updateToppings, deleteToppings } from "./topping";
+//import { fetchPizzas, createPizzas, updatePizzas, deletePizzas } from "./pizza.js";
+//import { fetchPizzaToppings, createPizzaToppings, updatePizzaToppings, deletePizzaToppings } from "./pizzaTopping.js";
 
 
 const app = express();
@@ -60,9 +60,9 @@ app.get("/topping", async (req, res) => {
   
   app.delete("/topping/:id", async (req, res) => {
     try {
-      const { id, name } = req.params;
+      const { id } = req.params;
   
-      const response = await deleteToppings(id, name);
+      const response = await deleteToppings(id);
   
       res.send(response);
     } catch (err) {
