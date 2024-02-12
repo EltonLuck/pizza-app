@@ -8,13 +8,13 @@ import axios from "axios";
 import { API_URL } from "../utils";
 
 export const Topping = ({ topping, fetchToppings }) => {
-  const { name } = topping;
+  const { id, name } = topping;
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
 
   const handleDeleteTopping = async () => {
     try {
-      await axios.delete(`${API_URL}/${topping.id}`);
+      await axios.delete(`${API_URL}/${id}`);
 
       await fetchToppings();
     } catch (err) {

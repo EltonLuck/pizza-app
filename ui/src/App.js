@@ -32,9 +32,9 @@ export default function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <AddTopping fetchTasks={fetchToppings} />
+      <AddTopping fetchToppings={fetchToppings} />
       {toppings.map((topping) => (
-        <Topping task={topping} key={topping.id} fetchTasks={fetchToppings} />
+        <Topping topping={topping} key={topping.id} fetchToppings={fetchToppings} />
       ))}
     </ThemeProvider>
   );
