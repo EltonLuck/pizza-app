@@ -7,6 +7,7 @@ export const AddToppingToPizza = () => {
   const [toppings, setToppings] = useState([]);
   const [selectedPizza, setSelectedPizza] = useState('');
   const [selectedToppings, setSelectedToppings] = useState([]);
+  const [pizzaToppings, setPizzaToppings] = useState([]);
 
   useEffect(() => {
     // Fetch pizzas from server
@@ -18,6 +19,10 @@ export const AddToppingToPizza = () => {
     axios.get(API_URL)
     .then(response => setToppings(response.data))
     .catch(error => console.error('Error fetching toppings:', error));
+
+    axios.get(API_URL3)
+    .then(response => setPizzaToppings(response.data))
+    .catch(error => console.error('Error fetching pizza toppings:', error))
   }, []);
 
   const handlePizzaChange = (event) => {
@@ -37,21 +42,26 @@ export const AddToppingToPizza = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const testings = pizzaToppings.filter(topping =>
+            topping.pizzaId === selectedPizza)
+      const arrayDataItems = testings.map(topping => topping.toppingId)
+      console.log(arrayDataItems);
     try {
       for (let i = 0; i < selectedToppings.length; i++) {
+        if(arrayDataItems.includes(selectedToppings[i])){
+        } else {
         await axios.post(API_URL3, {
           pizzaId: selectedPizza,
           toppingId: selectedToppings[i],
         });
+       }
       }
-      //alert('Toppings added successfully!');
       console.log(selectedToppings);
       // Reset selectedToppings to empty array after successful submission
       setSelectedToppings([]);
       window.location.reload();
     } catch (error) {
       console.error('Error adding toppings:', error);
-      //alert('An error occurred. Please try again later.');
     }
   };
 
