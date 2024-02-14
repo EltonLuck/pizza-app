@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_URL, API_URL2, API_URL3 } from "../utils";
+import { DeleteToppingFromPizza } from './DeleteToppingFromPizza';
 
 export const AddToppingToPizza = () => {
   const [pizzas, setPizzas] = useState([]);
@@ -57,7 +58,6 @@ export const AddToppingToPizza = () => {
        }
       }
       console.log(selectedToppings);
-      // Reset selectedToppings to empty array after successful submission
       setSelectedToppings([]);
       window.location.reload();
     } catch (error) {
@@ -92,6 +92,7 @@ export const AddToppingToPizza = () => {
         <br />
         <button className='scale' type="submit">Add Toppings</button>
       </form>
+      <DeleteToppingFromPizza />
     </div>
   );
 }
