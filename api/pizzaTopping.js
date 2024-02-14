@@ -1,4 +1,4 @@
-import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { DynamoDBClient, QueryCommand } from "@aws-sdk/client-dynamodb";
 import {
   UpdateCommand,
   PutCommand,
@@ -21,6 +21,24 @@ export const fetchPizzaToppings = async () => {
   return response;
 };
 
+export const fetchSpecificPizzaToppings = async (pizzaId) => {
+    const params = {
+        TableName: "PizzaTopping",
+        KeyConditionExpression: "#pizzaId = :pizzaId",
+        ExpressionAttributeNames: {
+            "#pizzaId": "pizzaId",
+        },
+        ExpressionAttributeValues: {
+            ":pizzaId": pizzaId,
+        },
+    };
+
+    const command = new QueryCommand(params);
+
+    const response = await docClient.send(command);
+    return response;
+}
+
 export const createPizzaToppings = async ({ pizzaId, toppingId }) => {
   const uuid = crypto.randomUUID();
   const command = new PutCommand({
@@ -31,7 +49,7 @@ export const createPizzaToppings = async ({ pizzaId, toppingId }) => {
       toppingId: toppingId,
     },
   });
-
+  console.log(toppingId);
   const response = await docClient.send(command);
   return response;
 };

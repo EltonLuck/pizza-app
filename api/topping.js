@@ -65,5 +65,6 @@ export const deleteToppings = async (id) => {
     });
 
   const response = await docClient.send(command);
+
   return response;
 };

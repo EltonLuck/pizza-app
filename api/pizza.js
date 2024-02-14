@@ -56,16 +56,16 @@ export const updatePizzas = async ({ id, name }) => {
   return response;
 };
 
-export const deletePizzas = async (id, name) => {
+export const deletePizzas = async (id) => {
   const command = new DeleteCommand({
     TableName: "Pizza",
     Key: {
       id,
     },
-    TableName: "PizzaTopping",
-    key: {
-      name,
-    },
+    // TableName: "PizzaTopping",
+    // key: {
+    //   id,
+    // },
   });
 
   const response = await docClient.send(command);

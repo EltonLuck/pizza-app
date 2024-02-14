@@ -36,3 +36,11 @@ body {
 .done {
   text-decoration: line-through;
 }
+
+.home {
+  margin: 40vh 0;
+}
+
+.return {
+  text-align: right;
+}

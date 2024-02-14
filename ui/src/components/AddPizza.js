@@ -3,23 +3,21 @@ import TextField from "@mui/material/TextField";
 import { Button, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import axios from "axios";
-import { API_URL } from "../utils";
+import { API_URL2 } from "../utils";
 import { Link } from "react-router-dom";
 
-export const AddTopping = ({ fetchToppings }) => {
-  const [newTopping, setNewTopping] = useState("");
+export const AddPizza = ({ fetchPizzas }) => {
+  const [newPizza, setNewPizza] = useState("");
 
-  
-
-  const addNewTopping = async () => {
+  const addNewPizza = async () => {
     try {   
-        await axios.post(API_URL, {
-            name: newTopping,
+        await axios.post(API_URL2, {
+            name: newPizza,
         }); 
 
-        await fetchToppings();
+        await fetchPizzas();
 
-        setNewTopping("");
+        setNewPizza("");
     } catch (err) {
         console.log(err);
     }
@@ -27,12 +25,13 @@ export const AddTopping = ({ fetchToppings }) => {
   };
 
   const checker = async () => {
-    const checkToppings = await axios.get(API_URL);
-    if(checkToppings.data.some(obj => obj.name === newTopping)) //check if topping name exists in array
+    const checkPizzas = await axios.get(API_URL2);
+    if(checkPizzas.data.some(obj => obj.name === newPizza)) //check if topping name exists in array
     {
-        console.log("Topping Already Exists");
+        console.log("Pizza Already Exists");
     } else {
-        addNewTopping()
+        addNewPizza();
+        window.location.reload();
     }
   };
 
@@ -44,18 +43,18 @@ export const AddTopping = ({ fetchToppings }) => {
             </Link>
         </div>
       <Typography align="center" variant="h2" paddingTop={2} paddingBottom={2}>
-        Topping List
+        Pizza List
       </Typography>
       <div className="addTaskForm">
         <TextField
           size="small"
-          label="Topping Name"
+          label="Pizza Name"
           variant="outlined"
-          value={newTopping}
-          onChange={(e) => setNewTopping(e.target.value)}
+          value={newPizza}
+          onChange={(e) => setNewPizza(e.target.value)}
         />
         <Button
-          disabled={!newTopping.length}
+          disabled={!newPizza.length}
           variant="outlined"
           onClick={checker}
         >
