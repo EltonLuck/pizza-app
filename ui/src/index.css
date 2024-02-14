@@ -44,3 +44,7 @@ body {
 .return {
   text-align: right;
 }
+
+.center {
+  text-align: center;
+}

@@ -10,6 +10,7 @@ import { API_URL, API_URL2 } from "./utils";
 import { AddToppingToPizza } from "./components/AddToppingToPizza";
 import { Home } from "./components/Home";
 import { Route, Routes } from "react-router-dom";
+import { PizzaList } from "./components/PizzaList";
 
 const darkTheme = createTheme({
   palette: {
@@ -74,6 +75,12 @@ export default function App() {
             <Pizza pizza={pizza} key={pizza.id} fetchPizzas={fetchPizzas} fetchToppings={fetchToppings} />
           ))}
           <AddToppingToPizza />
+        </ThemeProvider>
+      } />
+      <Route path="/menu" element={
+        <ThemeProvider theme={darkTheme}>
+          <CssBaseline />
+          <PizzaList />
         </ThemeProvider>
       } />
     </Routes>

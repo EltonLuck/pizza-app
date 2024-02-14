@@ -18,6 +18,11 @@ export const Home = () => {
                     <Button variant="contained">Chef</Button>
                 </Link>
             </Stack>
+            <div className='center'>
+                <Link to='/menu'>
+                    <Button variant="contained">Pizza List</Button>
+                </Link>
+            </div>
         </div>
   )
 }
