@@ -48,3 +48,9 @@ body {
 .center {
   text-align: center;
 }
+
+.scale {
+  font-weight: normal;
+  font-size: 28px;
+  letter-spacing: o.25px;
+}

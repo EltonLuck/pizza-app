@@ -57,30 +57,30 @@ export const AddToppingToPizza = () => {
 
   return (
     <div>
-      <h1>Add Topping to Pizza</h1>
+      <h1>Add Toppings to Pizza</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="pizzaSelect">Select Pizza:</label>
-        <select id="pizzaSelect" value={selectedPizza} onChange={handlePizzaChange}>
+        <label className='scale' htmlFor="pizzaSelect">Select Pizza:</label>
+        <select className='scale' id="pizzaSelect" value={selectedPizza} onChange={handlePizzaChange}>
           <option key="default" value="">Select Pizza</option>
           {pizzas.map((pizza, index) => (
             <option key={index} value={pizza.pizza_id}>{pizza.name}</option>
           ))}
         </select>
         <br />
-        <label>Select Toppings:</label><br />
+        <label className='scale'>Select Toppings:</label><br />
         {toppings.map((topping , index)=> (
           <div key={index}>
-            <input
+            <input 
               type="checkbox"
               id={topping.topping_id}
               value={topping.name}
               onChange={handleToppingChange}
             />
-            <label htmlFor={topping.topping_id}>{topping.name}</label><br />
+            <label className='scale' htmlFor={topping.topping_id}>{topping.name}</label><br />
           </div>
         ))}
         <br />
-        <button type="submit">Add Toppings</button>
+        <button className='scale' type="submit">Add Toppings</button>
       </form>
     </div>
   );

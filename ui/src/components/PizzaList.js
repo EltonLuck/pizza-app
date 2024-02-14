@@ -34,17 +34,17 @@ export const PizzaList = () => {
                 <Button color="error" variant="contained">Back</Button>
             </Link>
         </div>
-        <Typography>PizzaList</Typography>
+        <Typography variant="h3" className="center">Pizza List</Typography>
         <ul>
                 {uniquePizzaIds.map(pizzaId => {
                     const toppingsForPizza = pizzaToppings.filter(topping => topping.pizzaId === pizzaId);
                     return (
                         <li key={pizzaId}>
-                            <p>Pizza: {pizzaId}</p>
+                            <Typography variant="h4"> {pizzaId}</Typography>
                             <ul>
                                 {toppingsForPizza.map(topping => (
                                     <li key={topping.id}>
-                                        <p>{topping.toppingId}</p>
+                                        <Typography variant="h5">{topping.toppingId}</Typography>
                                     </li>
                                 ))}
                             </ul>
