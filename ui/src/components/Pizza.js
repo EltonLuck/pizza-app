@@ -1,20 +1,36 @@
 import { Button, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { UpdatePizza } from "./UpdatePizza";
 import classnames from "classnames";
 import axios from "axios";
-import { API_URL2 } from "../utils";
+import { API_URL2, API_URL3 } from "../utils";
 
 
 export const Pizza = ({ pizza, fetchPizzas, fetchToppings }) => {
-  const { name } = pizza;
+  const { id, name } = pizza;
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [pizzaToppings, setPizzaToppings] = useState([]);
+
+  useEffect(() => {
+
+    axios.get(API_URL3)
+    .then(response => setPizzaToppings(response.data))
+    .catch(error => console.error('Error fetching pizza toppings:', error))
+  }, []);
 
   const handleDeletePizza = async () => {
     try {
-      await axios.delete(`${API_URL2}/${pizza.id}`);
+      const filter = pizzaToppings.filter(topping =>
+            topping.pizzaId === name)
+      const arrayOfIds = filter.map(topping => topping.id)
+      if(arrayOfIds.length > 0) {
+        for(let i = 0; i < arrayOfIds.length; i++) {
+          await axios.delete(`${API_URL3}/${arrayOfIds[i]}`)
+        }
+      }
+      await axios.delete(`${API_URL2}/${id}`);
 
       await fetchPizzas();
       window.location.reload();

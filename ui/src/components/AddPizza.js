@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import { Button, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 export const AddPizza = ({ fetchPizzas }) => {
   const [newPizza, setNewPizza] = useState("");
+  const [ pizzas, setPizzas ] = useState([]);
 
   const addNewPizza = async () => {
     try {   
@@ -24,9 +25,17 @@ export const AddPizza = ({ fetchPizzas }) => {
     
   };
 
+  useEffect(() => {
+    // Fetch pizzas from server
+    axios.get(API_URL2)
+      .then(response => setPizzas(response.data))
+      .catch(error => console.error('Error fetching pizzas:', error));
+
+  }, []);
+
   const checker = async () => {
-    const checkPizzas = await axios.get(API_URL2);
-    if(checkPizzas.data.some(obj => obj.name === newPizza)) //check if topping name exists in array
+    const check = pizzas.filter(pizza => pizza.name === newPizza);
+    if(check.length > 0)
     {
         console.log("Pizza Already Exists");
     } else {
