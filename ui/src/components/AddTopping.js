@@ -20,6 +20,7 @@ export const AddTopping = ({ fetchToppings }) => {
         await fetchToppings();
 
         setNewTopping("");
+        window.location.reload();
     } catch (err) {
         console.log(err);
     }
