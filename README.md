@@ -1,10 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## HOW TO RUN THE APP
 
-Make sure you have Node.js installed
+Make sure you have Node.js installed and run:
 
-run: npm install
+### `npm install`
 
 Navigate to the ui folder, then you can run:
 
