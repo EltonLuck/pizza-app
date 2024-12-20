@@ -2,6 +2,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+Make sure you have Node.js installed
+
+run: npm install
+
 Navigate to the ui folder, then you can run:
 
 ### `npm start`
